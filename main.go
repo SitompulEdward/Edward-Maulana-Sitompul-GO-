@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"perpustakaan/akun/connection"
 	"perpustakaan/akun/controllers"
 	"perpustakaan/akun/repositories"
@@ -40,7 +41,7 @@ func main() {
 	r.Delete("/delete-data-pegawai/{id}", ctrl.DeleteDataPegawaii)
 	r.Put("/update-data-pegawai/{id}", ctrl.UpdateDataPegawaii)
 
-	if err := http.ListenAndServe(":5000", r); err != nil {
+	if err := http.ListenAndServe(":"+os.Getenv("HOST")+"", r); err != nil {
 		fmt.Println("Error Starting Service !")
 	}
 }
